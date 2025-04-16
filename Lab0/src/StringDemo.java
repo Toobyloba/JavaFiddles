@@ -14,6 +14,6 @@ public class StringDemo {
         // Accessing characters in a string
         System.out.println("The first character of the message is: " + message.charAt(0));
 
-        // Converting to uppercase
+        // Converting to uppercase 
     }
 }
