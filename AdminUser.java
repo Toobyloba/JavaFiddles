@@ -7,7 +7,7 @@ public class AdminUser extends User {
     }
 
     public void logBranchCleanUp(int branchesDeleted) {
-        System.out.println("Admin " + this.getUsername() + "ID: " + this.getUserId() + ", Level: " + this.accessLevel
-                + ") deleted " + branchesDeleted + "branches");
+        System.out.println("Admin " + getUsername() + " ID: " + getUserId() + ", Level: " + accessLevel
+                + ") deleted " + branchesDeleted + " branches.");
     }
 }
