@@ -9,3 +9,4 @@ tarfile_name=$(basename $1)_$(date +"%Y-%m-%d").tar.gz
 echo $tarfile_name
 tar -czvf $tarfile_name $(basename $1)
 echo "backup sucessfully created" $tarfile_name
+exit 0
