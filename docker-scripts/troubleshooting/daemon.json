@@ -1,0 +1,6 @@
+{
+  "insecure-registries": [
+    "registry.example.com:5000",
+    "expired.example.com:5000"
+  ]
+}

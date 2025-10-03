@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  registry:
+    image: registry:2
+    ports:
+      - 5000:5000
+    environment:
+      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt
+      REGISTRY_HTTP_TLS_KEY: /certs/domain.key
+      # Additional security settings
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+      REGISTRY_HTTP_HEADERS_X_CONTENT_TYPE_OPTIONS: nosniff
+      REGISTRY_HTTP_HEADERS_X_FRAME_OPTIONS: DENY
+    volumes:
+      - ./certs:/certs
+      - ./data:/var/lib/registry
+    restart: always
+    
+  # Optional: Add a UI for your registry
+  registry-ui:
+    image: joxit/docker-registry-ui:latest
+    ports:
+      - 8080:80
+    environment:
+      - REGISTRY_URL=https://registry:5000
+      - REGISTRY_TITLE=Secure Docker Registry
+      - SINGLE_REGISTRY=true
+    depends_on:
+      - registry

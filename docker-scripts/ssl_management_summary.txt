@@ -1,0 +1,20 @@
+# Docker Registry SSL Certificate Management Summary
+
+1. VERIFY a registry's certificate:
+   openssl s_client -connect registry.example.com:443 -showcerts </dev/null
+
+2. ADD a custom certificate for a registry:
+   sudo mkdir -p /etc/docker/certs.d/registry.example.com:5000
+   sudo cp registry.crt /etc/docker/certs.d/registry.example.com:5000/ca.crt
+   sudo systemctl restart docker
+
+3. CONFIGURE an insecure registry (development only):
+   Add to /etc/docker/daemon.json:
+   { "insecure-registries": ["registry.example.com:5000"] }
+   sudo systemctl restart docker
+
+4. CHECK expiration dates regularly:
+   openssl x509 -in certificate.crt -noout -dates
+
+5. AUTOMATE certificate monitoring:
+   Create and schedule scripts to check certificates regularly
